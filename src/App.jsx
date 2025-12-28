@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { decreament, increament, increamentAmount } from './redux/features/counterSlice';
 // import Form from './components/twoWayBinding';
@@ -7,6 +7,7 @@ const App = () => {
 
   const dispatch = useDispatch();
   const count = useSelector((state) => state.counter.value);
+  const [num, setnum] = useState(5);
   
   return (
     <div>
@@ -18,9 +19,16 @@ const App = () => {
           dispatch(decreament( ))
       }}>decre</button>
       <br />
+
+      <input type="number" value={num} onChange={(e) =>{
+        setnum(e.target.value);
+        
+      }} />
+      <br />
       <button onClick={()=>{
-        dispatch(increamentAmount(10))
+        dispatch(increamentAmount(Number(num)))
       }}>increase amount</button>
+      
 
 
 
